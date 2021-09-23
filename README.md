@@ -9,16 +9,16 @@ Since the original maintainer doesn't work on this package, we forked it and mai
 
 ## Getting started
 1. Install
-    - `npm i youtube-chat`
-    - `yarn add youtube-chat`
+    - `npm i @freetube/youtube-chat`
+    - `yarn add @freetube/youtube-chat`
 2. Import
     - Javascript
     ```javascript
-    const LiveChat = require('youtube-chat').LiveChat
+    const LiveChat = require('@freetube/youtube-chat').LiveChat
     ```
     - Typescript
     ```typescript
-    import {LiveChat} from 'youtube-chat'
+    import {LiveChat} from '@freetube/youtube-chat'
     ```
 3. Create instance with ChannelID or LiveID
     ```javascript
