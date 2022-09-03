@@ -53,7 +53,21 @@ function parseThumbnailToImageItem(data: Thumbnail[], alt: string): ImageItem | 
 }
 
 function parseEmojiToImageItem(data: MessageEmoji): ImageItem | undefined {
-  return parseThumbnailToImageItem(data.emoji.image.thumbnails, data.emoji.shortcuts.shift()!)
+  if (data.hasOwnProperty('emoji')) {
+    if (data.emoji.hasOwnProperty('image')) {
+      if (data.emoji.image.hasOwnProperty('thumbnails')) {
+        if (data.emoji.hasOwnProperty('shortcuts')) {
+          if (data.emoji.shortcuts.length > 1) {
+            const emoChar: any = data.emoji.shortcuts.shift();
+            return parseThumbnailToImageItem(data.emoji.image.thumbnails, emoChar);
+          }
+        }
+      }
+    }
+  }
+  else {
+    return;
+  }
 }
 
 function parseMessages(runs: MessageRun[]): MessageItem[] {
