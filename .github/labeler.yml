@@ -1,0 +1,13 @@
+'PR: waiting for review':
+  - '*' 
+  - '.github/**/*'
+  - 'dist/**/*'
+  - 'src/**/*'
+  - 'test/**/*'
+  - 'youtube-example/**/*'
+  - '.editorconfig'
+  - '.gitignore'
+  - '.npmignore'
+  
+'PR: dependencies':
+  - 'package.json'
