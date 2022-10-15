@@ -53,20 +53,10 @@ function parseThumbnailToImageItem(data: Thumbnail[], alt: string): ImageItem | 
 }
 
 function parseEmojiToImageItem(data: MessageEmoji): ImageItem | undefined {
-  if (data.hasOwnProperty('emoji')) {
-    if (data.emoji.hasOwnProperty('image')) {
-      if (data.emoji.image.hasOwnProperty('thumbnails')) {
-        if (data.emoji.hasOwnProperty('shortcuts')) {
-          if (data.emoji.shortcuts.length > 1) {
-            const emoChar: any = data.emoji.shortcuts.shift();
-            return parseThumbnailToImageItem(data.emoji.image.thumbnails, emoChar);
-          }
-        }
-      }
-    }
-  }
-  else {
-    return;
+  const thumbnailsValid = Array.isArray(data?.emoji?.image?.thumbnails)
+  const shortcutsPresent = Array.isArray(data?.emoji?.shortcuts) && data.emoji.shortcuts.length > 0
+  if (thumbnailsValid && shortcutsPresent) {
+    return parseThumbnailToImageItem(data.emoji.image.thumbnails, data.emoji.shortcuts.shift()!)
   }
 }
 
