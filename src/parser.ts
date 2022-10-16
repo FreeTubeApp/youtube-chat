@@ -53,7 +53,11 @@ function parseThumbnailToImageItem(data: Thumbnail[], alt: string): ImageItem | 
 }
 
 function parseEmojiToImageItem(data: MessageEmoji): ImageItem | undefined {
-  return parseThumbnailToImageItem(data.emoji.image.thumbnails, data.emoji.shortcuts.shift()!)
+  const thumbnailsValid = Array.isArray(data?.emoji?.image?.thumbnails)
+  const shortcutsPresent = Array.isArray(data?.emoji?.shortcuts) && data.emoji.shortcuts.length > 0
+  if (thumbnailsValid && shortcutsPresent) {
+    return parseThumbnailToImageItem(data.emoji.image.thumbnails, data.emoji.shortcuts.shift()!)
+  }
 }
 
 function parseMessages(runs: MessageRun[]): MessageItem[] {
